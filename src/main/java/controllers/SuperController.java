@@ -19,6 +19,7 @@ import services.SuperService;
 @Controller
 public class SuperController {
 	
+	
 	private SuperService ss;
 	
 	@Autowired
@@ -28,16 +29,20 @@ public class SuperController {
 	
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("/super-human")
+	@GetMapping(path = "/superhuman")
 	@ResponseBody
 	public List<Superhuman> getAllSuperhumans() {
 		
-	return ss.getAllSuperhumans();
+		
+		System.out.println("Making it to my endpoint for get all heros");
+	
+		
+		return ss.getAllSuperhumans();
 	
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("/super-human/{SUPER_HUMAN_NAME}")
+	@GetMapping("/superhuman/{SUPER_HUMAN_NAME}")
 	@ResponseBody
 	public Superhuman getSuperhumanByName(@PathVariable String SUPER_HUMAN_NAME) {
 		return ss.getSuperhumanByName(SUPER_HUMAN_NAME);
@@ -45,7 +50,7 @@ public class SuperController {
 		
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping("/super-human")
+	@PostMapping("/superhuman")
 	public void addSuperhuman(@RequestBody Superhuman superhuman) {
 		
 		ss.registerSuperhuman(superhuman);
@@ -53,19 +58,19 @@ public class SuperController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("/super-human")
+	@PutMapping("/superhuman")
 	public void updateSuperhuman(@RequestBody Superhuman superhuman) {
 		ss.updateSuperhuman(superhuman);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping("/super_human")
+	@DeleteMapping("/superhuman")
 	public void removeSuperhuman(@RequestBody String super_name) {
 		ss.removeSuperhuman(ss.getSuperhumanByName(super_name));
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("/super-team")
+	@GetMapping("/superteam")
 	@ResponseBody
 	public List<Superteams> getAllSuperTeams() {
 		return ss.getAllSuperteams();
@@ -73,7 +78,7 @@ public class SuperController {
 	
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("/super-team/{team_name}")
+	@GetMapping("/superteam/{team_name}")
 	@ResponseBody
 	public Superteams getTeamByName(@PathVariable String team_name) {
 		
@@ -82,7 +87,7 @@ public class SuperController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping("/super-team")
+	@PostMapping("/superteam")
 	public void addSuperteam(@RequestBody Superteams superteam) {
 		
 		ss.registerSuperteam(superteam);
@@ -90,7 +95,7 @@ public class SuperController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("/super-team/{team_name}/super-human")
+	@PutMapping("/superteam/{team_name}/super_human")
 	public void addSuperhumanToTeam(@PathVariable String team_name, @RequestBody String super_name) {
 		Superhuman updatedSuper = ss.getSuperhumanByName(super_name);
 		Superteams updatedTeam = ss.getSuperteamByName(team_name);

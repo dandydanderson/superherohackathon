@@ -9,9 +9,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.springframework.orm.hibernate5.SessionFactoryUtils;
 
 import models.Superhuman;
+import models.Superteams;
 
 public class SessionFactoryUtility {
 
@@ -19,16 +19,14 @@ public class SessionFactoryUtility {
 	private static SessionFactoryUtility sfu;
 
 	private static final String USERNAME = System.getenv("POSTGRES_USERNAME");
-
 	private static final String PASSWORD = System.getenv("AWS_POSTGRES_PASSWORD");
-
 	private static final String URL = "jdbc:postgresql://" + System.getenv("AWS_POSTGRES_SUPERHUMANS")
 			+ ":5432/postgres?";
 
 	private static String schema = "public";
 
 	public static SessionFactoryUtility getSessionFactoryUtility() {
-		if (sf == null) {
+		if (sfu == null) {
 			sfu = new SessionFactoryUtility();
 		}
 		return sfu;
@@ -48,7 +46,9 @@ public class SessionFactoryUtility {
 
 			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().applySettings(settings)
 					.build();
-			Metadata metadata = new MetadataSources(standardRegistry).addAnnotatedClass(Superhuman.class)
+			Metadata metadata = new MetadataSources(standardRegistry)
+					.addAnnotatedClass(Superhuman.class)
+					.addAnnotatedClass(Superteams.class)
 					.getMetadataBuilder().applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
 					.build();
 			sf = metadata.getSessionFactoryBuilder().build();
@@ -57,10 +57,6 @@ public class SessionFactoryUtility {
 
 	public SessionFactory getSessionFactory() {
 		return this.sf;
-	}
-
-	public static void setConfigFileLocationToTest() {
-		schema = "publictest";
 	}
 
 }

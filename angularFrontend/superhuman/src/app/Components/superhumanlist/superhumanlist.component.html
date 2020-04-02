@@ -1,0 +1,44 @@
+<mat-card class="card">
+    <h2>Superhumans</h2>
+  </mat-card>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Super Name Column -->
+    <ng-container matColumnDef="super_name">
+      <th mat-header-cell *matHeaderCellDef> Super Name </th>
+      <td mat-cell *matCellDef="let superhuman"> {{superhuman._super_name}} </td>
+    </ng-container>
+  
+    <!-- Alignment -->
+    <ng-container matColumnDef="alignment_type">
+      <th mat-header-cell *matHeaderCellDef> Alignment </th>
+      <td mat-cell *matCellDef="let superhuman"> {{superhuman.alignment_type}} </td>
+    </ng-container>
+  
+    <!-- Actual Name Column -->
+    <ng-container matColumnDef="actual_name">
+      <th mat-header-cell *matHeaderCellDef> Actual Name </th>
+      <td mat-cell *matCellDef="let superhuman"> {{superhuman.actual_name}} </td>
+    </ng-container>
+  
+    <!-- Country -->
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef> End Date </th>
+      <td mat-cell *matCellDef="let superhuman"> {{superhuman.country}} </td>
+    </ng-container>
+  
+      <!-- Power Description Column -->
+      <ng-container matColumnDef="power_description">
+        <th mat-header-cell *matHeaderCellDef> Power Description </th>
+        <td mat-cell *matCellDef="let superhuman"> {{superhuman.power_description}} </td>
+      </ng-container>
+  
+        <!-- Team Name -->
+    <ng-container matColumnDef="team_name">
+      <th mat-header-cell *matHeaderCellDef> Team Name </th>
+      <td mat-cell *matCellDef="let superhuman"> {{superhuman.team_name}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

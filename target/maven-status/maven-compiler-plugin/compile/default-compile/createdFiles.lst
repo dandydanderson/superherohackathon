@@ -1,0 +1,10 @@
+confis\WebAppInitializer.class
+services\SuperService.class
+confis\WebMVCConfig.class
+daos\SuperDAO.class
+controllers\SuperController.class
+utilities\SessionFactoryUtility.class
+confis\AppConfig.class
+models\Superteams.class
+daos\superDaoInterface.class
+models\Superhuman.class
