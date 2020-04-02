@@ -42,8 +42,8 @@ public interface superDaoInterface {
 	//Delete
 	//////////////////
 	
-	public void removeSuperhuman(String super_name);
+	public void removeSuperhuman(Superhuman superhuman);
 	
-	public void removeSuperTeam(String team_name);
+	public void removeSuperTeam(Superteams superteam);
 
 }
