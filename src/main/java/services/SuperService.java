@@ -36,7 +36,9 @@ public class SuperService {
 		dao.registerSuperhuman(superhuman);
 	}
 	
-	
+	public void registerSuperteam(Superteams superteam) {
+		dao.registerSuperteam(superteam);
+	}
 	
 	
 
@@ -64,6 +66,10 @@ public class SuperService {
 		return dao.getAllSuperhumansByTeam(team_name);
 	}
 	
+	public Superteams getSuperteamByName(String team_name) {
+		return dao.getSuperteam(team_name);
+	}
+	
 	
 
 /////////////////
@@ -72,6 +78,9 @@ public class SuperService {
 
 		
 	public void updateSuperhuman(Superhuman superhuman) {
+		
+		//need to also have a check if updating team that team has same alignment
+		
 		if(dao.getSuperhumanByName(superhuman.getSuper_name())!=null) {
 			dao.updateSuperhuman(superhuman);
 		}

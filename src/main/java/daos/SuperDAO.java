@@ -42,6 +42,13 @@ public class SuperDAO implements superDaoInterface {
 		
 	}
 	
+	public void registerSuperteam(Superteams superteams) {
+		Session sess = sf.openSession();
+		Transaction tx = sess.beginTransaction();
+		sess.save(superteams);
+		tx.commit();
+	}
+	
 	///////////////
 	//Read
 	////////////
@@ -64,6 +71,13 @@ public class SuperDAO implements superDaoInterface {
 		
 		Session sess = sf.openSession();
 		return sess.get(Superhuman.class, super_name);	
+	}
+	
+	
+	public Superteams getSuperteam(String team_name) {
+		
+		Session sess = sf.openSession();
+		return sess.get(Superteams.class, team_name);	
 	}
 
 	@Override
